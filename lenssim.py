@@ -64,18 +64,18 @@ def simulatePM(Ds, Dd, srcRadius, lensMass, numGals, figNum=1, doShow=False):
     srcXY = np.zeros((numGals,2))
     pLensXY = np.zeros((numGals,2))
     for i in xrange(numGals):
-        srcXY[i,0] = srcPlane[i,0]*math.cos(randomTheta[i,0])
-        srcXY[i,1] = srcPlane[i,0]*math.sin(randomTheta[i,0])
-        pLensXY[i,0] = projectedLensPlane[i,0]*math.cos(randomTheta[i,0])
-        pLensXY[i,1] = projectedLensPlane[i,0]*math.sin(randomTheta[i,0])
+        srcXY[i,0] = math.atan(srcPlane[i,0]*math.cos(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        srcXY[i,1] = math.atan(srcPlane[i,0]*math.sin(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        pLensXY[i,0] = math.atan(projectedLensPlane[i,0]*math.cos(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        pLensXY[i,1] = math.atan(projectedLensPlane[i,0]*math.sin(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
 
     fig = plt.figure(figNum, figsize=(fhgt,fhgt))
     plt.scatter(srcXY[:,0], srcXY[:,1], c='#e41a1c', edgecolor='none', label='Sources')
     plt.scatter(pLensXY[:,0], pLensXY[:,1], c='#377eb8',edgecolor='none', label='Lensed Sources')
     plt.legend()
     plt.title(r'Lens')
-    plt.xlabel(r'$x$ (Parsec)')
-    plt.ylabel(r'$y$ (Parsec)')
+    plt.xlabel(r'$x$ (arcsec)')
+    plt.ylabel(r'$y$ (arcsec)')
     if doShow == True:
         plt.show(False)
     return fig
@@ -88,18 +88,18 @@ def simulateIS(Ds, Dd, srcRadius, sigmaV, numGals, figNum=1, doShow=False):
     srcXY = np.zeros((numGals,2))
     pLensXY = np.zeros((numGals,2))
     for i in xrange(numGals):
-        srcXY[i,0] = srcPlane[i,0]*math.cos(randomTheta[i,0])
-        srcXY[i,1] = srcPlane[i,0]*math.sin(randomTheta[i,0])
-        pLensXY[i,0] = projectedLensPlane[i,0]*math.cos(randomTheta[i,0])
-        pLensXY[i,1] = projectedLensPlane[i,0]*math.sin(randomTheta[i,0])
+        srcXY[i,0] = math.atan(srcPlane[i,0]*math.cos(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        srcXY[i,1] = math.atan(srcPlane[i,0]*math.sin(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        pLensXY[i,0] = math.atan(projectedLensPlane[i,0]*math.cos(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
+        pLensXY[i,1] = math.atan(projectedLensPlane[i,0]*math.sin(randomTheta[i,0])/Ds)*(180.0/math.pi)*3600.0
 
     fig = plt.figure(figNum, figsize=(fhgt,fhgt))
     plt.scatter(srcXY[:,0], srcXY[:,1], c='#e41a1c', edgecolor='none', label='Sources')
     plt.scatter(pLensXY[:,0], pLensXY[:,1], c='#377eb8',edgecolor='none', label='Lensed Sources')
     plt.legend()
     plt.title(r'Lens')
-    plt.xlabel(r'$x$ (Parsec)')
-    plt.ylabel(r'$y$ (Parsec)')
+    plt.xlabel(r'$x$ (arcsec)')
+    plt.ylabel(r'$y$ (arcsec)')
     if doShow == True:
         plt.show(False)
     return fig
